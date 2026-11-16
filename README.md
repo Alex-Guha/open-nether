@@ -11,15 +11,19 @@
 
 Opens the Nether's roof and reshapes its terrain for players arriving from above, by airship through Immersive Portals: Aeronautics' dimension stack.
 
-**Work in progress**: nothing is changed yet.
-
 ## Highlights
 
-- 
+- No roof: the Nether is open above, with about 130 blocks of open air over its highest ground.
+- Highlands and mesas up to about Y 120, with overhanging rims, cut by wide basins down to the lava sea. The caverns stay inside the highlands, open to the sky in places.
+- Crimson and warped forests in groves and glades: dense stands of huge fungi and open clearings.
+- Giant crimson and warped fungi, 24 to 40 blocks tall, with caps wide and flat enough to land an airship on.
 
 ### Good to know
 
-- 
+- Chunks generated before the mod was added keep their roof: start a new world, or explore new parts of the Nether.
+- Glowstone grows only under netherrack ceilings, so with the roof gone there is less of it (about 40% of vanilla's).
+- The Nether's logical height is 256, so the dimension stack's ceiling plane sits at Y 256 and nether portals may be placed up to there.
+- MNS's mega fortress hangs its posts from the ceiling by chains; with no ceiling the chains run up into the open air.
 
 ### Compatibility
 
@@ -29,11 +33,12 @@ Works with:
 - Immersive Portals: Aeronautics' dimension stack
 
 Not compatible:
-- 
+- Incendium and Amplified Nether: they replace the Nether's terrain too, and the game will not load with both.
+- Jaden's Nether Expansion with its default config, which replaces the Nether's terrain and biome source; set `netherWorldGenOverhaul` and `improvedNetherBiomeSource` to false in its config (the game warns about this).
 
 ## How it works
 
-<!-- A few paragraphs for players and newcomers: what the mod changes and how, in game terms. -->
+Open Nether is data: it changes the Nether's world generation through the same files a datapack would, shipped inside the mod's jar. It keeps vanilla's Nether below the old roof: the lava sea at Y 32, the caverns, the biomes and their features. Above that, instead of the rock cap and the bedrock roof, the terrain thins out under the open sky, at a height that changes across the land: high in the highlands, low in the basins that open onto the lava sea. The groves and giant fungi are features and structures added to the Nether's own biomes through biome tags (`opennether:has_feature/...`, `opennether:has_structure/...`), so a modpack can add other mods' biomes to them.
 
 ## Building from source
 

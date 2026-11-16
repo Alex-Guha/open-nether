@@ -20,6 +20,9 @@ See "Building from source" in the [README](README.md).
 |---|---|
 | `src/main/java/com/alexguha/opennether/` | The mod |
 | `src/main/java/com/alexguha/opennether/compat/` | Compatibility with other mods; `OptionalModMixinPlugin` skips mixins into mods that are not installed |
+| `src/main/resources/data/minecraft/` | Overrides of the vanilla Nether's world generation: its noise settings (terrain and surface), dimension type and cave carver |
+| `src/main/resources/data/opennether/` | Our own world generation: the terrain's density functions and noise, the forests' groves, the giant fungi (structures and templates), and the NeoForge biome modifiers that add them to the Nether's biomes |
+| `scripts/giant-fungi.py` | Writes the giant fungus templates (`data/opennether/structure/giant_fungus/`) |
 | `src/main/templates/META-INF/neoforge.mods.toml` | The mod's metadata, filled in from `gradle.properties` by the build |
 | `scripts/` | Build helpers and the static checks (`check.sh`) |
 | `changelog/` | Changes per release, one file per minor version |
