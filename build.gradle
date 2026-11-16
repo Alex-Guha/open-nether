@@ -1,0 +1,170 @@
+// Based on NeoForge's MDK (MIT licence, TEMPLATE_LICENSE.txt), with this project's additions marked below.
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.141'
+    id 'idea'
+}
+
+tasks.named('wrapper', Wrapper).configure {
+    distributionType = Wrapper.DistributionType.BIN
+}
+
+version = mod_version
+group = mod_group_id
+
+sourceSets.main.resources {
+    // Resources made by the data generators
+    srcDir('src/generated/resources')
+    exclude("**/*.bbmodel")
+    exclude("src/generated/**/.cache")
+}
+
+repositories {
+    // Mods from Modrinth: maven.modrinth:<slug>:<version id>, ids from https://api.modrinth.com/v2/project/<slug>/version
+    exclusiveContent {
+        forRepository { maven { name = 'Modrinth'; url = 'https://api.modrinth.com/maven' } }
+        filter { includeGroup 'maven.modrinth' }
+    }
+}
+
+base {
+    archivesName = mod_id
+}
+
+// Mojang ships Java 21 to players in 1.21.1
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+neoForge {
+    version = project.neo_version
+
+    parchment {
+        mappingsVersion = project.parchment_mappings_version
+        minecraftVersion = project.parchment_minecraft_version
+    }
+
+    runs {
+        client {
+            client()
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+        server {
+            server()
+            programArgument '--nogui'
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+        gameTestServer {
+            type = "gameTestServer"
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+        data {
+            data()
+            programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+        }
+        configureEach {
+            systemProperty 'forge.logging.markers', 'REGISTRIES'
+            logLevel = org.slf4j.event.Level.DEBUG
+        }
+    }
+
+    mods {
+        "${mod_id}" {
+            sourceSet(sourceSets.main)
+        }
+    }
+}
+
+// localRuntime: present in dev runs, never published as a dependency of this mod
+configurations {
+    runtimeClasspath.extendsFrom localRuntime
+}
+
+dependencies {
+    // Other mods: compileOnly for optional compat (mixins into them go through compat.OptionalModMixinPlugin),
+    // implementation for a required dependency (also declare it in neoforge.mods.toml). Pin Modrinth version ids:
+    // compileOnly "maven.modrinth:<slug>:<version id>"   // <mod> <version>
+
+    // Unit tests (./gradlew test, part of build): plain JUnit on classes that need no running game
+    testImplementation "org.junit.jupiter:junit-jupiter:5.10.2"
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher"
+
+    // Jar-in-jar libraries of the mods above, extracted by scripts/extract-nested-deps.sh (deps/ is gitignored)
+    compileOnly fileTree(dir: 'deps', include: '*.jar')
+}
+
+tasks.named('test', Test).configure {
+    useJUnitPlatform()
+}
+
+// This project: downloads the Modrinth mods we compile against into Gradle's cache, without the rest of the build, so
+// that scripts/extract-nested-deps.sh finds their jars on a fresh machine (CI): `./gradlew downloadModJars`
+tasks.register('downloadModJars') {
+    notCompatibleWithConfigurationCache('resolves a detached configuration when it runs')
+    doLast {
+        def mods = configurations.compileClasspath.allDependencies.findAll { it.group == 'maven.modrinth' }*.copy()
+        def jars = mods ? configurations.detachedConfiguration(*mods).tap { transitive = false }.files : []
+        logger.lifecycle("${jars.size()} mod jars in Gradle's cache")
+    }
+}
+
+// This project: the compile classpath as one colon-separated line in build/checks/compile-classpath.txt, for
+// scripts/check.sh: mixincheck.py checks our mixin targets against exactly these jars (Minecraft and NeoForge among
+// them). Written by every build, so check.sh needs no Gradle run of its own.
+def writeCompileClasspath = tasks.register('writeCompileClasspath') {
+    def out = layout.buildDirectory.file('checks/compile-classpath.txt')
+    def classpath = sourceSets.main.compileClasspath
+    inputs.files(classpath)
+    outputs.file(out)
+    doLast {
+        out.get().asFile.text = classpath.files.findAll { it.name.endsWith('.jar') }*.absolutePath.join(':') + '\n'
+    }
+}
+tasks.named('jar').configure { finalizedBy(writeCompileClasspath) }
+
+// This project: build/libs keeps only the jars of the version being built, so the newest jar is the one just built
+def removeOldJars = tasks.register('removeOldJars', Delete) {
+    delete fileTree(layout.buildDirectory.dir('libs')) {
+        include "${mod_id}-*.jar"
+        exclude "${mod_id}-${version}.jar", "${mod_id}-${version}-*.jar"
+    }
+}
+tasks.named('jar').configure { dependsOn(removeOldJars) }
+
+// Expands the properties below in src/main/templates (neoforge.mods.toml) on every build and IDE sync
+var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
+    var replaceProperties = [
+            minecraft_version      : minecraft_version,
+            minecraft_version_range: minecraft_version_range,
+            neo_version            : neo_version,
+            loader_version_range   : loader_version_range,
+            mod_id                 : mod_id,
+            mod_name               : mod_name,
+            mod_license            : mod_license,
+            mod_version            : mod_version,
+            mod_authors            : mod_authors,
+            mod_description        : mod_description,
+            issue_tracker_url      : issue_tracker_url,
+    ]
+    inputs.properties replaceProperties
+    expand replaceProperties
+    from "src/main/templates"
+    into "build/generated/sources/modMetadata"
+}
+sourceSets.main.resources.srcDir generateModMetadata
+neoForge.ideSyncTask generateModMetadata
+
+// This project: the licence and its required notice inside every jar (PolyForm Shield "Notices")
+tasks.withType(Jar).configureEach {
+    from(rootProject.file('LICENSE')) { into 'META-INF' }
+    from(rootProject.file('NOTICE')) { into 'META-INF' }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+idea {
+    module {
+        downloadSources = true
+        downloadJavadoc = true
+    }
+}

@@ -1,0 +1,2 @@
+# Problems scripts/mixincheck.py reports that are known and accepted, one per line exactly as printed. They are counted,
+# not listed; a line here that no longer occurs is reported as stale. Say why above each one.

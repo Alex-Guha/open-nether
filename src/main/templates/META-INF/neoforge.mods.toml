@@ -1,0 +1,38 @@
+# Expanded by build.gradle (generateModMetadata) from gradle.properties. Spec: https://docs.neoforged.net/docs/gettingstarted/modfiles
+modLoader="javafml"
+loaderVersion="${loader_version_range}"
+license="${mod_license}"
+issueTrackerURL="${issue_tracker_url}"
+
+[[mods]]
+modId="${mod_id}"
+version="${mod_version}"
+displayName="${mod_name}"
+authors="${mod_authors}"
+description='''${mod_description}'''
+#logoFile="${mod_id}.png"
+
+[[mixins]]
+config="${mod_id}.mixins.json"
+
+[[dependencies.${mod_id}]]
+    modId="neoforge"
+    type="required"
+    versionRange="[${neo_version},)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="minecraft"
+    type="required"
+    versionRange="${minecraft_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+# An optional mod we have compat for: type="optional" (loads without it), with its versionRange
+#[[dependencies.${mod_id}]]
+#    modId="create"
+#    type="optional"
+#    versionRange="[6.0.6,)"
+#    ordering="AFTER"
+#    side="BOTH"

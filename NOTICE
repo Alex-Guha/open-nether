@@ -1,0 +1,11 @@
+Open Nether
+Copyright 2026 Alex Guha
+
+Required Notice: Copyright 2026 Alex Guha
+
+The code written for Open Nether is licensed under the PolyForm Shield License 1.0.0
+(see LICENSE, https://polyformproject.org/licenses/shield/1.0.0).
+
+Its build files follow NeoForge's mod template (MDK), copyright the NeoForged project, under the
+MIT licence (TEMPLATE_LICENSE.txt in the source repository); the Gradle wrapper is Gradle's, under
+the Apache License 2.0.

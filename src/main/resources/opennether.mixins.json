@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.alexguha.opennether.mixin",
+  "plugin": "com.alexguha.opennether.compat.OptionalModMixinPlugin",
+  "compatibilityLevel": "JAVA_21",
+  "overwrites": {
+    "conformVisibility": true
+  },
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "mixins": [
+  ],
+  "client": [
+  ],
+  "server": [
+  ]
+}

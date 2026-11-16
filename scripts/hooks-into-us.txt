@@ -1,0 +1,12 @@
+# Other mods' hooks into our classes, which scripts/check.sh checks against our freshly built jar: a renamed or removed
+# member crashes the game for their players (required mixins) or quietly breaks their feature (reflection). Before
+# changing a member named here, keep its old form or tell the other mod's author.
+#
+# One line per mod, "mod <Modrinth slug> <version id> <version> <mixin config> <mixin package folder>": check.sh
+# downloads that release, decompiles its mixins with Vineflower and checks the ones into our packages. Below each mod
+# line, one "a.b.Class#member" line per member it reaches by reflection. scripts/dependency-check.py reports newer
+# releases: bump the line, and update the reflected members from the new jar.
+#
+# Example:
+# mod some-addon AbCdEf12 1.2.0 someaddon.mixins.json com/example/someaddon/mixin
+# com.alexguha.opennether.SomeClass#someMethod

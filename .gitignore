@@ -1,0 +1,38 @@
+# gradle
+.gradle/
+build/
+out/
+classes/
+/runs/
+/run/
+/repo/
+
+# IDEs
+.idea/
+*.iml
+*.ipr
+*.iws
+.settings/
+.vscode/
+bin/
+.classpath
+.project
+*.launch
+.eclipse/
+
+.DS_Store
+__pycache__/
+logs/
+
+# Jar-in-jar libraries of the mods we compile against (scripts/extract-nested-deps.sh), and test mods
+/deps
+# A log pasted for the current session
+/LOG.txt
+/latest.log
+/*.jar
+
+# Private: the notes repository and its links (the maintainer's, not part of this repository). No trailing slash:
+# a pattern ending in / does not match a symlink, and in a worktree these are links
+/CLAUDE.md
+/docs
+/reference

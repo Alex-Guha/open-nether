@@ -1,0 +1,47 @@
+name: Bug report
+description: "Something in Open Nether goes wrong"
+labels: [bug, needs-triage]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        One bug per issue, please. If you are not sure whether another mod is involved, try again with only this mod and its dependencies (back up the world first). To find which mod of a large pack is involved, remove half of the mods, test, and repeat with the half that still shows the bug.
+  - type: input
+    id: version
+    attributes:
+      label: "Open Nether version"
+      description: The jar's version, e.g. 0.1.0.
+    validations:
+      required: true
+  - type: textarea
+    id: mods
+    attributes:
+      label: Related mods and their versions
+      description: Any mods the bug may involve (Sodium, Iris and the shader pack, ...). A link to the modpack is fine too.
+    validations:
+      required: true
+  - type: dropdown
+    id: side
+    attributes:
+      label: Where does it happen?
+      options:
+        - Single player
+        - Multiplayer (dedicated server)
+        - Multiplayer (LAN or hosted)
+        - Not sure
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happens, and how to make it happen
+      description: What you did, what you expected, and what happened instead. Steps that make it happen again help most. Screenshots or a video are welcome, especially for anything drawn wrong.
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Drag in `logs/latest.log` from the game folder (and the server's, for multiplayer), and the crash report from `crash-reports/` if it crashed. The log often holds what the crash report lacks.
+    validations:
+      required: true
