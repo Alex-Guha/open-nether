@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#opennether:has_feature/crimson_groves",
+  "features": "opennether:crimson_groves",
+  "step": "vegetal_decoration"
+}

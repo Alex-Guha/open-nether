@@ -29,6 +29,31 @@ config="${mod_id}.mixins.json"
     ordering="NONE"
     side="BOTH"
 
+# Mods that replace the nether's terrain (its noise settings) as we do: only one terrain can win
+[[dependencies.${mod_id}]]
+    modId="incendium"
+    type="incompatible"
+    reason="Incendium replaces the Nether's terrain, as Open Nether does; only one of them can shape it."
+    versionRange="*"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="amplified_nether"
+    type="incompatible"
+    reason="Amplified Nether replaces the Nether's terrain, as Open Nether does; only one of them can shape it."
+    versionRange="*"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="netherexp"
+    type="discouraged"
+    reason="With its default config, Jaden's Nether Expansion replaces the Nether's terrain and biome source, overriding Open Nether. Set netherWorldGenOverhaul and improvedNetherBiomeSource to false in its config (and removeNetherNoodleCaves to false to keep the Nether's cave tunnels)."
+    versionRange="*"
+    ordering="NONE"
+    side="BOTH"
+
 # An optional mod we have compat for: type="optional" (loads without it), with its versionRange
 #[[dependencies.${mod_id}]]
 #    modId="create"

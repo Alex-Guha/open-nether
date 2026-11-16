@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:remove_features",
+  "biomes": "#opennether:has_feature/crimson_groves",
+  "features": "minecraft:crimson_fungi",
+  "steps": ["vegetal_decoration"]
+}

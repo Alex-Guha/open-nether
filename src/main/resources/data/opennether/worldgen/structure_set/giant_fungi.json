@@ -1,0 +1,18 @@
+{
+  "structures": [
+    {
+      "structure": "opennether:giant_crimson_fungus",
+      "weight": 1
+    },
+    {
+      "structure": "opennether:giant_warped_fungus",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 830166245,
+    "spacing": 16,
+    "separation": 6
+  }
+}

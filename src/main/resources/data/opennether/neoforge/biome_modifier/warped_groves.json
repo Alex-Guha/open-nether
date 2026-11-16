@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#opennether:has_feature/warped_groves",
+  "features": "opennether:warped_groves",
+  "step": "vegetal_decoration"
+}

@@ -9,4 +9,5 @@ A new minor version starts a new file, `<x.y>.md`, with its line in the index be
 
 | File | Versions | Dates |
 |---|---|---|
+| [0.2.md](0.2.md) | 0.2.0 | 2026-11-16 |
 | [0.1.md](0.1.md) | 0.1.0 | 2026-11-04 |

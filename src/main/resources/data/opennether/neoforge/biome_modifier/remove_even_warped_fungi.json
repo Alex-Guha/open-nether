@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:remove_features",
+  "biomes": "#opennether:has_feature/warped_groves",
+  "features": "minecraft:warped_fungi",
+  "steps": ["vegetal_decoration"]
+}

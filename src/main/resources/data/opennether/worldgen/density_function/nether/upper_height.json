@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:clamp",
+  "min": 24.0,
+  "max": 114.0,
+  "input": {
+    "type": "minecraft:add",
+    "argument1": 78.0,
+    "argument2": {
+      "type": "minecraft:mul",
+      "argument1": 50.0,
+      "argument2": {
+        "type": "minecraft:shifted_noise",
+        "noise": "opennether:upper_height",
+        "shift_x": "minecraft:shift_x",
+        "shift_y": 0.0,
+        "shift_z": "minecraft:shift_z",
+        "xz_scale": 1.0,
+        "y_scale": 0.0
+      }
+    }
+  }
+}
