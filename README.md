@@ -4,7 +4,8 @@
 
 # Open Nether
 
-[![CurseForge Downloads](https://img.shields.io/curseforge/dt/REPLACE?style=flat-square&logo=curseforge&label=CurseForge&color=%23EB622B)](https://www.curseforge.com/minecraft/mc-mods/REPLACE) [![Modrinth Downloads](https://img.shields.io/modrinth/dt/REPLACE?style=flat-square&logo=modrinth&label=Modrinth&color=%2300AF5C)](https://modrinth.com/mod/REPLACE)
+[![CurseForge Downloads](https://img.shields.io/curseforge/dt/1812167?style=flat-square&logo=curseforge&label=CurseForge&color=%23EB622B)](https://www.curseforge.com/minecraft/mc-mods/open-nether)
+[![Modrinth Downloads](https://img.shields.io/modrinth/dt/WqENZGVI?style=flat-square&logo=modrinth&label=Modrinth&color=%2300AF5C)](https://modrinth.com/mod/open-nether)
 ![License](https://img.shields.io/badge/License-PolyForm%20Shield%201.0.0-blue?style=flat-square)
 [![Discord](https://img.shields.io/discord/1558244213487829002?style=flat-square&logo=discord)](https://discord.gg/R6jjbqnThA)
 
