@@ -1,11 +1,12 @@
 <div align="center">
 
+<img src="src/main/resources/opennether.png" alt="Open Nether logo" width="128">
+
 # Open Nether
 
-![Minecraft 1.21.1](https://img.shields.io/badge/Minecraft-1.21.1-62B47A?style=flat-square)
-![NeoForge](https://img.shields.io/badge/Loader-NeoForge-D7742F?style=flat-square)
+[![CurseForge Downloads](https://img.shields.io/curseforge/dt/REPLACE?style=flat-square&logo=curseforge&label=CurseForge&color=%23EB622B)](https://www.curseforge.com/minecraft/mc-mods/REPLACE) [![Modrinth Downloads](https://img.shields.io/modrinth/dt/REPLACE?style=flat-square&logo=modrinth&label=Modrinth&color=%2300AF5C)](https://modrinth.com/mod/REPLACE)
 ![License](https://img.shields.io/badge/License-PolyForm%20Shield%201.0.0-blue?style=flat-square)
-[![Build](https://img.shields.io/github/actions/workflow/status/Alex-Guha/open-nether/build.yml?branch=main&style=flat-square&logo=github&label=Build)](https://github.com/Alex-Guha/open-nether/actions/workflows/build.yml)
+[![Discord](https://img.shields.io/discord/1558244213487829002?style=flat-square&logo=discord)](https://discord.gg/R6jjbqnThA)
 
 </div>
 
